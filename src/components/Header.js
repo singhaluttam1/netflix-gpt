@@ -4,7 +4,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-import { LOGO, SUPPORTED_LANGUAGES, USER_AVATAR } from '../utils/constant';
+import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constant';
 import { toggleGptSearchView } from '../utils/gptSlice';
 import { changeLanguage } from '../utils/configSlice';
 
@@ -67,7 +67,7 @@ const Header = () => {
               )}
             </select>)}
           <button className='py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg text-nowrap w-auto' onClick={handleGptSearchClick}>{showGptSearch? "HomePage" :"GTP Search"}</button>
-          <img src={USER_AVATAR} alt="usericon" className='hidden md:block cursor-pointer m-4' />
+          <img src="smile.jpg" alt="usericon" className='hidden md:block cursor-pointer m-4 h-8 w-8' />
           <button className='font-bold text-white text-nowrap pr-6' onClick={handleSignOut}>(Sign Out)</button>
         </div>)}
     </div>
