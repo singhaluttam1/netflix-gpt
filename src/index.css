@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Hide scrollbars cross-browser */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* ✅ Prevent white screen from over-scrolling on macOS, Safari, Chrome */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* background-color: black; */
+  /* overflow-x: hidden; */
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
