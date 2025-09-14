@@ -30,6 +30,6 @@ export const profiles = [
   { id: 3, name: "Children", color: "bg-purple-500", type: "kids" ,image:'img/child.png'}
 ];
 export const menuItems = [
-  { icon: "👤", text: "Account" },
-  { icon: "❓", text: "Help Centre" }
+  { icon: "👤 ", text: "Account" },
+  { icon: "❓ ", text: "Help Centre" }
 ];
