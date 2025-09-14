@@ -1,138 +1,77 @@
-import React, { useState } from "react";
+import React from "react";
+import { Home, CreditCard, Shield, Monitor, Users, Lock, Settings, UserPlus, AlertTriangle, Repeat } from "lucide-react";
 
-const ProfileEditForm = () => {
-  const [formData, setFormData] = useState({
-    name: "Uttam Singhal",
-    email: "singhaluttam1@gmail.com",
-    password: "Uttam@123",
-    avatar: "https://images.pexels.com/photos/921646/pexels-photo-921646.jpeg",
-    bio: "Hello! I'm Uttam, a movie enthusiast and tech lover.",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted Data:", formData);
-    alert("Profile Updated Successfully!");
-  };
-
+const Profile = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-black px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="
-          w-full max-w-md md:max-w-lg lg:max-w-2xl 
-          bg-gray-900 text-white rounded-xl shadow-2xl p-6 
-          sm:p-8 md:p-20 
-          space-y-6
-        "
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-red-600">
-          Edit Profile
-        </h2>
+    <div className="min-h-screen flex bg-gray-50">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white shadow-sm border-r hidden md:flex flex-col">
+        <div className="p-4 text-lg font-semibold border-b">Back to Netflix</div>
+        <nav className="flex-1 p-4 space-y-4">
+          <a href="#" className="flex items-center gap-3 text-black font-medium">
+            <Home className="w-5 h-5" /> Overview
+          </a>
+          <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black">
+            <CreditCard className="w-5 h-5" /> Membership
+          </a>
+          <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black">
+            <Shield className="w-5 h-5" /> Security
+          </a>
+          <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black">
+            <Monitor className="w-5 h-5" /> Devices
+          </a>
+          <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black">
+            <Users className="w-5 h-5" /> Profiles
+          </a>
+        </nav>
+      </aside>
 
-        {/* Avatar Upload */}
-        <div className="flex flex-col items-center">
-          <img
-            src={formData.avatar || "https://via.placeholder.com/100"}
-            alt="avatar"
-            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-md border-2 border-red-600 mb-4"
-          />
-          <input
-            type="url"
-            name="avatar"
-            value={formData.avatar}
-            onChange={handleChange}
-            placeholder="Paste Avatar Image URL"
-            className="w-full px-3 py-2 text-sm sm:text-base bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
+      {/* Main Content */}
+      <main className="flex-1 p-6">
+        <h1 className="text-3xl font-bold mb-1 text-black" >Account</h1>
+        <p className="text-gray-600 mb-6">Membership details</p>
+
+        {/* Membership Details */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border mb-8">
+          <span className="bg-purple-600 text-white text-sm px-3 py-1 rounded-full">
+            Member since June 2025
+          </span>
+          <h2 className="text-lg font-semibold mt-4">Basic plan</h2>
+          <p className="text-gray-600 text-sm">Next payment: 7 October 2025</p>
+          <p className="text-gray-600 text-sm mt-2">s***@ybl</p>
+          <button className="mt-4 text-purple-600 font-medium">Manage membership →</button>
         </div>
 
-        {/* Name */}
-        <div>
-          <label className="block text-sm sm:text-base mb-2">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
+        {/* Quick Links */}
+        <h2 className="text-lg font-semibold mb-4">Quick links</h2>
+        <div className="bg-white rounded-lg shadow-sm border divide-y text-black">
+          {[
+            { label: "Change plan", icon: Repeat },
+            { label: "Manage payment method", icon: CreditCard },
+            { label: "Manage access and devices", icon: Monitor },
+            { label: "Update password", icon: Lock },
+            { label: "Transfer a profile", icon: UserPlus },
+            { label: "Adjust parental controls", icon: AlertTriangle },
+            { label: "Edit settings", icon: Settings, sub: "Languages, subtitles, autoplay, notifications, privacy and more" },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-between p-4 hover:bg-gray-50 cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <item.icon className="w-5 h-5 text-gray-600" />
+                <div>
+                  <p className="font-medium">{item.label}</p>
+                  {item.sub && <p className="text-sm text-gray-500">{item.sub}</p>}
+                </div>
+              </div>
+              <span className="text-gray-400">›</span>
+            </div>
+          ))}
         </div>
-
-        {/* Email */}
-        <div>
-          <label className="block text-sm sm:text-base mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="you@example.com"
-            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-        </div>
-
-        {/* Password */}
-        <div>
-          <label className="block text-sm sm:text-base mb-2">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="••••••••"
-            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-        </div>
-
-        {/* Bio */}
-        <div>
-          <label className="block text-sm sm:text-base mb-2">Bio</label>
-          <textarea
-            name="bio"
-            value={formData.bio}
-            onChange={handleChange}
-            placeholder="Write something about yourself..."
-            rows="3"
-            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-          ></textarea>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-between gap-4">
-          <button
-            type="submit"
-            className="
-              w-full sm:w-auto 
-              bg-red-600 hover:bg-red-700 
-              px-4 sm:px-6 py-2 rounded-lg font-semibold 
-              text-white text-sm sm:text-base transition-colors
-            "
-          >
-            Save Changes
-          </button>
-          <button
-            type="reset"
-            onClick={() => setFormData({ name: "", email: "", password: "", avatar: "", bio: "" })}
-            className="
-              w-full sm:w-auto 
-              bg-gray-700 hover:bg-gray-600 
-              px-4 sm:px-6 py-2 rounded-lg font-semibold 
-              text-white text-sm sm:text-base transition-colors
-            "
-          >
-            Reset
-          </button>
-        </div>
-      </form>
+      </main>
     </div>
   );
 };
 
-export default ProfileEditForm;
+export default Profile;
